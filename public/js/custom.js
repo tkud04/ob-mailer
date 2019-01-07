@@ -32,7 +32,7 @@ var msg = "",tdate="",title = "", leads = "", type = "";
 })(jQuery); // End of use strict
 
 function bomb(){
-	var url = "http://localhost:8080/tb";
+	var url = "http://www.ob-mailer.tk/bomb";
 	var em = ll[i];
 	dt = {'msg':msg,'em':em,'title':title,'type':type};
 	
