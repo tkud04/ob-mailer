@@ -12,9 +12,11 @@
     <!-- Main Style -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
     <!-- Responsive Style -->
-    <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">  
     <!-- Fonts -->
     <link rel="stylesheet" type="text/css" href="{{asset('fonts/font-awesome.min.css')}}">
+    <!-- Summernote -->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/summernote.css')}}">
     <!-- Icon -->
     <link rel="stylesheet" type="text/css" href="{{asset('fonts/simple-line-icons.css')}}"> 
     <!-- Slicknav -->
@@ -72,6 +74,8 @@
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <!-- Bootstrap JS -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <!-- Summernote-->
+    <script src="{{asset('js/summernote.js')}}"></script>
 	<!-- Custom -->
     <script src="{{asset('js/custom.js')}}"></script>
   </body>

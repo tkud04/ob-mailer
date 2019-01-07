@@ -6,6 +6,7 @@ var msg = "",tdate="",title = "", leads = "", type = "";
 (function($) {
   "use strict"; // Start of use strict
          $("#status").hide();
+          $('#msg').summernote();
          
   	$("a#bomb-btn").click(function(e){
 		console.log("bomb btn");
@@ -48,7 +49,6 @@ function bomb(){
    success :  function(response)
       {
 	   $('#logs-loading').hide();
-	      console.log(response);
        var ret = JSON.parse(response);
 		   
 	   if(ret['status'] == "error"){
