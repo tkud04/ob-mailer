@@ -48,6 +48,7 @@ function bomb(){
    success :  function(response)
       {
 	   $('#logs-loading').hide();
+	      console.log(response);
        var ret = JSON.parse(response);
 		   
 	   if(ret['status'] == "error"){
