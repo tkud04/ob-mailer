@@ -62,7 +62,7 @@ class MainController extends Controller {
 			
                        $ret = ["op" => "mailer","status" => "ok"];       
                   }       
-           return $ret;                                                                                            
+           return json_encode($ret);                                                                                            
 	}
 	
 }
