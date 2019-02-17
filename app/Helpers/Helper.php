@@ -24,7 +24,7 @@ class Helper implements HelperContract
                    if($type == "view")
                    {
                      Mail::send($view,$data,function($message) use($to,$subject){
-                           $message->from('ceokhalifawali@gmail.com',"Khalifa Wali");
+                           $message->from('ceochriswoods12@gmail.com',"Khalifa C.W. Aabideen");
                            $message->to($to);
                            $message->subject($subject);
                           if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
@@ -40,7 +40,7 @@ class Helper implements HelperContract
                    elseif($type == "raw")
                    {
                      Mail::raw($view,$data,function($message) use($to,$subject){
-                            $message->from('ceokhalifawali@gmail.com',"Khalifa Wali");
+                            $message->from('ceochriswoods12@gmail.com',"Khalifa C.W. Aabideen");
                            $message->to($to);
                            $message->subject($subject);
                            if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
