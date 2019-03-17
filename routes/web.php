@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'MainController@getIndex');
-Route::get('bomb', 'MainController@getBomb');
+Route::get('send', 'MainController@getBomb');

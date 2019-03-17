@@ -6,6 +6,9 @@ use Crypt;
 use Carbon\Carbon; 
 use Mail;
 use Auth;
+use \Swift_Mailer;
+use \Swift_SmtpTransport;
+
 
 class Helper implements HelperContract
 {
@@ -25,7 +28,6 @@ class Helper implements HelperContract
                    {
                      Mail::send($view,$data,function($message) use($to,$subject){
                            $message->from('ceokhalifawali@gmail.com',"Khalifa Wali");
-                           //$message->from('ceokhalifawali@gmail.com',"Khalifa Wali");
                            $message->to($to);
                            $message->subject($subject);
                           if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
@@ -41,8 +43,59 @@ class Helper implements HelperContract
                    elseif($type == "raw")
                    {
                      Mail::raw($view,$data,function($message) use($to,$subject){
-                            $message->from('Ceokhalifawali@gmail.com',"Khalifa Wali");
-                           //$message->from('ceokhalifawali@gmail.com',"Khalifa Wali");
+                            $message->from('ceokhalifawali@gmail.com',"Khalifa Wali");
+                           $message->to($to);
+                           $message->subject($subject);
+                           if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
+                          {
+                          	foreach($data["attachments"] as $a) $message->attach($a);
+                          } 
+                     });
+                   }
+           }          
+           
+           function sendEmailSMTP($data,$view,$type="view")
+           {
+           	    // Setup a new SmtpTransport instance for new SMTP
+                $transport = "";
+if($data['sec'] != "none") $transport = new Swift_SmtpTransport($data['ss'], $data['sp'], $data['sec']);
+
+else $transport = new Swift_SmtpTransport($data['ss'], $data['sp']);
+
+   if($data['sa'] != "no"){
+                  $transport->setUsername($data['su']);
+                  $transport->setPassword($data['spp']);
+     }
+// Assign a new SmtpTransport to SwiftMailer
+$smtp = new Swift_Mailer($transport);
+
+// Assign it to the Laravel Mailer
+Mail::setSwiftMailer($smtp);
+
+$se = $data['se'];
+$sn = $data['sn'];
+$to = $data['em'];
+$subject = $data['subject'];
+                   if($type == "view")
+                   {
+                     Mail::send($view,$data,function($message) use($to,$subject,$se,$sn){
+                           $message->from($se,$sn);
+                           $message->to($to);
+                           $message->subject($subject);
+                          if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")
+                          {
+                          	foreach($data["attachments"] as $a) $message->attach($a);
+                          } 
+						  $message->getSwiftMessage()
+						  ->getHeaders()
+						  ->addTextHeader('x-mailgun-native-send', 'true');
+                     });
+                   }
+
+                   elseif($type == "raw")
+                   {
+                     Mail::raw($view,$data,function($message) use($to,$subject,$se,$sn){
+                            $message->from($se,$sn);
                            $message->to($to);
                            $message->subject($subject);
                            if(isset($data["has_attachments"]) && $data["has_attachments"] == "yes")

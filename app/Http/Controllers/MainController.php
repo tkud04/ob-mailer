@@ -39,16 +39,22 @@ class MainController extends Controller {
            $req = $request->all();
 		   #dd($req);
            $ret = "";
-               
+              #{'msg':msg,'em':em,'subject':subject,'link':link,'sn':senderName,'se':senderEmail,'ss':SMTPServer,'sp':SMTPPort,'su':SMTPUser,'spp':SMTPPass,'sa':SMTPAuth};
                 $validator = Validator::make($req, [
                              'em' => 'required|email',
                              'msg' => 'required',
-                             'title' => 'required',
+                             'subject' => 'required',
+                             'sn' => 'required',
+                             'se' => 'required|email',
+                             'ss' => 'required',
+                             'sp' => 'required',
+                             'su' => 'required',
+                             'spp' => 'required',
                    ]);
          
                  if($validator->fails())
                   {
-                       $ret = ["op" => "mailer","status" => "error-validation"];
+                       $ret = json_encode(["op" => "mailer","status" => "error-validation"]);
                        
                  }
                 
@@ -56,13 +62,13 @@ class MainController extends Controller {
                  {              	 
                        $msg = $req["msg"];
                        $em = $req["em"];
-                       $title = $req["title"];
+                       $title = $req["subject"];
 
-                       $this->helpers->sendEmail($em,$title,['msg' => $msg],'emails.cp_alert','view'); 
+                       $this->helpers->sendEmailSMTP($req,'emails.cp_alert','view'); 
 			
-                       $ret = ["op" => "mailer","status" => "ok"];       
+                       $ret = json_encode(["op" => "mailer","status" => "ok"]);       
                   }       
-           return json_encode($ret);                                                                                            
+           return $ret;                                                                                            
 	}
 	
 }

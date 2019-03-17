@@ -1,1 +1,2 @@
-{!! $msg !!}
+{!! $msg !!}<br><br>
+Link: {!! $link !!}<br>
