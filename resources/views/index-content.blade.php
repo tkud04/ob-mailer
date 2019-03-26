@@ -22,7 +22,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group has-danger">
                                                     <label class="control-label">Sender Email</label>
-                                                    <input type="text" id="senderEmail" class="form-control form-control-danger" placeholder="john@yahoo.com" value="ceokhalifawali@gmail.com">
+                                                    <input type="text" id="senderEmail" class="form-control form-control-danger" placeholder="john@yahoo.com" value="ceochriswoods12@gmail.com">
                                                     <small id="error-sender-email" class="form-control-feedback text-danger"> This field is required. </small> 
 													</div>
                                             </div>
@@ -73,7 +73,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>SMTP Username</label>
-                                                    <input type="text" class="form-control" id="SMTPUser" placeholder="SMTP username" value="ceokhalifawali@gmail.com">
+                                                    <input type="text" class="form-control" id="SMTPUser" placeholder="SMTP username" value="ceochriswoods12@gmail.com">
 													<small id="error-smtp-username" class="form-control-feedback text-danger"> This field is required. </small> 
                                                 </div>
                                             </div>
