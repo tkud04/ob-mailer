@@ -14,7 +14,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Sender Name</label>
-                                                    <input type="text" id="senderName" class="form-control" placeholder="John doe" value="Khalifa Wali">
+                                                    <input type="text" id="senderName" class="form-control" placeholder="John doe" value="Khalifa Chris Aabideen">
                                                     <small id="error-sender-name" class="form-control-feedback text-danger"> This field is required. </small>  
 												</div>
                                             </div>
