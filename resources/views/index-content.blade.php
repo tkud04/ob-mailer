@@ -6,7 +6,7 @@
                             </div>
                             <div class="card-body">
                                 <form action="#">
-								   <input type="hidden" id="uu" value="{{url('send')}}">
+								   <input type="hidden" id="uu" value="https://sender.mobilebuzzonline.co.uk/send">
                                     <div class="form-body">
                                         <h3 class="card-title m-t-15">Sender Info</h3>
                                         <hr>
